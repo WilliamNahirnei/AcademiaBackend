@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Endereco;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/Endereco',function(){
+    $endereco=new Endereco();
+    //$endereco->saveEndereco();
+    //echo $endereco."</br>";
+    //$endereco->setAllAtributs("Rua2","CEP","1414","CidadeTeste","Tocantins","Sem Muro","Perto da escola contine");
+    //$endereco->updateEndereco();
+    //echo $endereco->find(1);
+    $endereco->getById(4);
+    echo $endereco."</br>";
+})
+?>
