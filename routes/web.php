@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Endereco;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +17,17 @@ use App\Models\Endereco;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/Endereco',function(){
-    $endereco=new Endereco();
-    //$endereco->saveEndereco();
-    //echo $endereco."</br>";
-    //$endereco->setAllAtributs("Rua2","CEP","1414","CidadeTeste","Tocantins","Sem Muro","Perto da escola contine");
-    //$endereco->updateEndereco();
-    //echo $endereco->find(1);
-    $endereco->getById(4);
-    echo $endereco."</br>";
-})
+Route::get('/Endereco/{idAdress}',function(){
+    $Address=new Address();
+    //$Address->saveAddress();
+    //echo $Address."</br>";
+    //$Address->setAllAtributs("Rua2","CEP","1414","CidadeTeste","Tocantins","Sem Muro","Perto da escola contine");
+    //$Address->updateAddress();
+    //echo $Address->find(1);
+    $Address->getById(1);
+    //echo $Address."</br>";
+});
+Route::get('/InserirEndereço',[AddressController::class,'insertAddress']);
+Route::put('/EditarEndereco',[AddressController::class,'updateAddress']);
+Route::delete('/ExcluirEndereco',[AddressController::class,'deleteAddress']);
 ?>
