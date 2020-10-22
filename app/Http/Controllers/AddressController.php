@@ -11,32 +11,59 @@ class AddressController extends BaseController
 {
    
     public function insertAddress(Request $request){
-        if($request==[]){
-         return "Parece que houve um erro por favor tente novamente ";
-        }
-        else{
-            $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
-            return $Address->saveAddress();
+        try{
+            if($request==[]){
+                return "Parece que houve um erro por favor tente novamente ";
+            }
+            else{
+                $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
+                return $Address->saveAddress();
+            }
+        }catch(Exception $e){
+            return "Erro no servidor";
         }
     }
 
-    public function updateAddress($request=[]){
-      if(empty($request)==true){
-         return "Parece que houve um erro por favor tente novamente";
-      }
-      else{
-         $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
-          return $Address->updateAddress($request["idAddress"]);
-      }
+    public function updateAddress(Request $request){
+        try{
+            if($request==[]){
+                return "Parece que houve um erro por favor tente novamente";
+            }
+            else{
+                $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
+                return $Address->updateAddress($request["idAddress"]);
+            }
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
 
-    public function deleteAddress($request=[]){
-      if(empty($request)==true){
-         return "Parece que houve um erro por favor tente novamente";
+    public function deleteAddress(Request $request){
+        try{
+            if($request==[]){
+                return "Parece que houve um erro por favor tente novamente";
+                }
+                else{
+                    $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
+                    return $Address->deleteAddress($request["idAddress"]);
+                }
+        }catch(Exception $e){
+            return "Erro no servidor";
         }
-        else{
-            $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
-            return $Address->deleteAddress($request["idAddress"]);
+    }
+    public function getAddress(Request $request){
+        try{
+            if($request==[]){
+                return "Parece que houve um erro por favor tente novamente";
+            }
+            else{
+                $Address=new Address();
+                $Address->getById($request["idAddress"]);
+                return $Address;
+            }
+        }catch(Exception $e){
+            return "Erro no servidor";
         }
+
     }
 }

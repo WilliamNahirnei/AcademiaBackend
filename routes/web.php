@@ -17,17 +17,7 @@ use App\Http\Controllers\AddressController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/Endereco/{idAdress}',function(){
-    //$Address=new Address();
-    //$Address->saveAddress();
-    //echo $Address."</br>";
-    //$Address->setAllAtributs("Rua2","CEP","1414","CidadeTeste","Tocantins","Sem Muro","Perto da escola contine");
-    //$Address->updateAddress();
-    //echo $Address->find(1);
-   // $Address->getById(1);
-    //echo $Address."</br>";
-    return csrf_token();
-});
+Route::get('/Endereco/{idAddress}',[AddressController::class,'getAddress']);
 Route::post('/InserirEndereco',[AddressController::class,'insertAddress']);
 Route::put('/EditarEndereco',[AddressController::class,'updateAddress']);
 Route::delete('/ExcluirEndereco',[AddressController::class,'deleteAddress']);

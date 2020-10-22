@@ -61,69 +61,106 @@ class Address extends Model implements Validations
 
 
     public function setAllAtributs($Street="",$Number="",$ZipCode="",$City="",$State="",$Complement="",$Reference=""){
-        $this->Street=$Street;
-        $this->ZipCode=$ZipCode;
-        $this->Number=$Number;
-        $this->City=$City;
-        $this->State=$State;
-        $this->Complement=$Complement;
-        $this->Reference=$Reference;
+        
+        try{
+            $this->Street=$Street;
+            $this->ZipCode=$ZipCode;
+            $this->Number=$Number;
+            $this->City=$City;
+            $this->State=$State;
+            $this->Complement=$Complement;
+            $this->Reference=$Reference;
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
+
     }
     
     public function setSpecificAttribute($atribute,$value){
-        $this->$atribute=$value;
+        try{
+            $this->$atribute=$value;
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
 
     function __construct($Street="Default",$Number="00",$ZipCode="00000000",$City="Default",$State="Default",$Complement="",$Reference=""){
-        $this->Street=$Street;
-        $this->ZipCode=$ZipCode;
-        $this->Number=$Number;
-        $this->City=$City;
-        $this->State=$State;
-        $this->Complement=$Complement;
-        $this->Reference=$Reference;
+        try{
+            $this->Street=$Street;
+            $this->ZipCode=$ZipCode;
+            $this->Number=$Number;
+            $this->City=$City;
+            $this->State=$State;
+            $this->Complement=$Complement;
+            $this->Reference=$Reference;
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
     public function getAllAtributs(){
-        return [
-            'idAddress'=>$this->idAddress,
-            'Street'=>$this->Street,
-            'ZipCode'=>$this->ZipCode,
-            'Number'=>$this->Number,
-            'City'=>$this->City,
-            'State'=>$this->State,
-            'Complement'=>$this->Complement,
-            'Reference'=>$this->Reference
-        ];
+        try{
+            return [
+                'idAddress'=>$this->idAddress,
+                'Street'=>$this->Street,
+                'ZipCode'=>$this->ZipCode,
+                'Number'=>$this->Number,
+                'City'=>$this->City,
+                'State'=>$this->State,
+                'Complement'=>$this->Complement,
+                'Reference'=>$this->Reference
+            ];
+        }
+        catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
     public function saveAddress(){
-
-        if($this->Validate()==true) {return $this->save();} else { return "   Algum dos campos não corresponde as especificações";}
+        try{
+        
+            if($this->Validate()==true) {return $this->save();} else { return "   Algum dos campos não corresponde as especificações";}
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
     public function updateAddress($idAddress){
-        if(empty($idAddress)==true){
-            $this->idAddress=$idAddress;
-            if($this->Validate()==true) {return $this->save();} else { return "Algum dos campos não corresponde as especificações";}
-        }else{ return "Parece que houve um erro, tente novamente "; }
+        try{
+            echo $idAddress;
+            if($idAddress>0){
+                $this->idAddress=$idAddress;
+                if($this->Validate()==true) {return $this->save();} else { return "Algum dos campos não corresponde as especificações";}
+            }else{ return "Parece que houve um erro, tente novamente "; }
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
     public function deleteAddress($idAddress){
-        if(empty($idAddress)==true){
-            $this->getById($idAddress);
-            $this->delete();
-        }
-        else{
-            return "Parece que houve um erro, tente novamente";
+        try{
+            if($idAddress>0){
+                $this->destroy($idAddress);
+            }
+            else{
+                return "Parece que houve um erro, tente novamente";
+            }
+        }catch(Exception $e){
+            return "Erro no servidor";
         }
     }
     public function getById($idAddress){
-        $consultedAddress=$this->find($idAddress);
-        $this->idAddress=$consultedAddress->idAddress;
-        $this->setAllAtributs(  $consultedAddress->Street,
-                                $consultedAddress->ZipCode,
-                                $consultedAddress->Number,
-                                $consultedAddress->City,
-                                $consultedAddress->State,
-                                $consultedAddress->Complement,
-                                $consultedAddress->Reference
-                            );
+        try{
+           
+            $consultedAddress=$this->find($idAddress);
+           
+            $this->idAddress=$consultedAddress->idAddress;
+            $this->setAllAtributs(  $consultedAddress->Street,
+                                    $consultedAddress->ZipCode,
+                                    $consultedAddress->Number,
+                                    $consultedAddress->City,
+                                    $consultedAddress->State,
+                                    $consultedAddress->Complement,
+                                    $consultedAddress->Reference
+                                );
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
     }
 }
