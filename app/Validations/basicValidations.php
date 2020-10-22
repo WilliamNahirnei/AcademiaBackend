@@ -6,19 +6,22 @@
         }
 
         public static function minimalStringSize($value,$size){
-            strlen($value)>=$size ? true : false ;
+            return strlen($value)>=$size ? true : false ;
         }
 
         public static function maximumStringSize($value,$size){
-            strlen($value)<=$size ? true : false ;
+            return strlen($value)<=$size ? true : false ;
         }
 
         public static function minimalNumericSize($value,$size){
-            $value>=$size ? true : false ;
+            return $value>=$size ? true : false ;
         }
 
-        public static function maximumnumericSize($value,$size){
-            $value<=$size ? true : false ;
+        public static function maximumNumericSize($value,$size){
+            return $value<=$size ? true : false ;
+        }
+        public static function checkType($value,$type){
+            return gettype($value)==$type ? true : false ;
         }
 }
 ?>
