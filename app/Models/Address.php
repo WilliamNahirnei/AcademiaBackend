@@ -122,12 +122,20 @@ class Address extends Model implements Validations
             return "Erro no servidor";
         }
     }
+
     public function updateAddress($idAddress){
         try{
-            echo $idAddress;
             if($idAddress>0){
                 $this->idAddress=$idAddress;
-                if($this->Validate()==true) {return $this->save();} else { return "Algum dos campos não corresponde as especificações";}
+                if($this->Validate()==true) {
+                    $addressToBeUpdated=$this->findOrFail($this->idAddress);
+                    $addressToBeUpdated->setAllAtributs($this->Street,$this->Number,$this->ZipCode,$this->City,$this->State,$this->Complement,$this->Reference);
+                    $addressToBeUpdated->save();
+                    return $addressToBeUpdated;
+                } 
+                else { 
+                    return "Algum dos campos não corresponde as especificações";
+                }
             }else{ return "Parece que houve um erro, tente novamente "; }
         }catch(Exception $e){
             return "Erro no servidor";

@@ -31,7 +31,8 @@ class AddressController extends BaseController
             }
             else{
                 $Address=new Address($request["Street"],$request["ZipCode"],$request["Number"],$request["City"],$request["State"],$request['Complement'],$request['Reference']);
-                return $Address->updateAddress($request["idAddress"]);
+                $Address=$Address->updateAddress($request["idAddress"]);
+                return $Address;
             }
         }catch(Exception $e){
             return "Erro no servidor";
