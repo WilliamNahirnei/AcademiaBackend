@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\LicenseTypeController;
+use App\Http\Controllers\UserTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,7 @@ Route::get('/Endereco/{idAddress}',[AddressController::class,'getAddress']);
 Route::post('/InserirEndereco',[AddressController::class,'insertAddress']);
 Route::put('/EditarEndereco',[AddressController::class,'updateAddress']);
 Route::delete('/ExcluirEndereco',[AddressController::class,'deleteAddress']);
+
+Route::get('/TesteDeLicencas',[LicenseTypeController::class,'Teste']);
+Route::get('/TesteDeTiposDeUsuario',[UserTypeController::class,'Teste']);
 ?>
