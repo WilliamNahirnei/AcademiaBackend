@@ -11,6 +11,6 @@ class LicenseTypeController extends BaseController
     public function Teste(){
         //return (LicenseType::getByName("Nutricioni"));
         //return(LicenseType::getById(1));
-        //return(LicenseType::getAllLicenseType());
+        return(LicenseType::getAllLicenseType());
     }
 }

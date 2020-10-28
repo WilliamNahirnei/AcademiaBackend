@@ -15,7 +15,12 @@ class VerifyCsrfToken extends Middleware
         '/InserirEndereco',
         '/Endereco/{idAdress}',
         '/EditarEndereco',
-        '/ExcluirEndereco'
+        '/ExcluirEndereco',
+        '/Usuario/{idUser}',
+        '/InserirUsuario',
+        '/EditarUsuario',
+        '/ExcluirUsuario'
+
         //
     ];
 }
