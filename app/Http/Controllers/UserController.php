@@ -67,4 +67,9 @@ class UserController extends BaseController
         }
 
     }
+
+    // public function show(Request $request, User $user)
+    // {
+    //     return $user;
+    // }
 }

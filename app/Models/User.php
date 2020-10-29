@@ -76,19 +76,19 @@ class User extends Model implements Validations
 
     }
 
-    function __construct($UserFullName="Default",$UserBirthDate="1999/01/01",$UserCPF="11111111111",$UserEmail="Default@default.com",$UserLogin="Default",$UserPassword="Default",$UseridUserType=1){
-        try{
-            $this->UserFullName=$UserFullName;
-            $this->UserBirthDate=$UserBirthDate;
-            $this->UserCPF=$UserCPF;
-            $this->UserEmail=$UserEmail;
-            $this->UserLogin=$UserLogin;
-            $this->UserPassword=$UserPassword;
-            $this->UseridUserType=$UseridUserType;
-        }catch(Exception $e){
-            return "Erro no servidor";
-        }
-    }
+    // function __construct($UserFullName="Default",$UserBirthDate="1999/01/01",$UserCPF="11111111111",$UserEmail="Default@default.com",$UserLogin="Default",$UserPassword="Default",$UseridUserType=1){
+    //     try{
+    //         $this->UserFullName=$UserFullName;
+    //         $this->UserBirthDate=$UserBirthDate;
+    //         $this->UserCPF=$UserCPF;
+    //         $this->UserEmail=$UserEmail;
+    //         $this->UserLogin=$UserLogin;
+    //         $this->UserPassword=$UserPassword;
+    //         $this->UseridUserType=$UseridUserType;
+    //     }catch(Exception $e){
+    //         return "Erro no servidor";
+    //     }
+    // }
 
     public function setSpecificAttribute($atribute,$value){
         try{
