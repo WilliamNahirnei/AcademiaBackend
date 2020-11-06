@@ -76,19 +76,19 @@ class User extends Model implements Validations
 
     }
 
-    // function __construct($UserFullName="Default",$UserBirthDate="1999/01/01",$UserCPF="11111111111",$UserEmail="Default@default.com",$UserLogin="Default",$UserPassword="Default",$UseridUserType=1){
-    //     try{
-    //         $this->UserFullName=$UserFullName;
-    //         $this->UserBirthDate=$UserBirthDate;
-    //         $this->UserCPF=$UserCPF;
-    //         $this->UserEmail=$UserEmail;
-    //         $this->UserLogin=$UserLogin;
-    //         $this->UserPassword=$UserPassword;
-    //         $this->UseridUserType=$UseridUserType;
-    //     }catch(Exception $e){
-    //         return "Erro no servidor";
-    //     }
-    // }
+    function __construct($UserFullName="Default",$UserBirthDate="1999/01/01",$UserCPF="11111111111",$UserEmail="Default@default.com",$UserLogin="Default",$UserPassword="Default",$UseridUserType=1){
+        try{
+            $this->UserFullName=$UserFullName;
+            $this->UserBirthDate=$UserBirthDate;
+            $this->UserCPF=$UserCPF;
+            $this->UserEmail=$UserEmail;
+            $this->UserLogin=$UserLogin;
+            $this->UserPassword=$UserPassword;
+            $this->UseridUserType=$UseridUserType;
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
+    }
 
     public function setSpecificAttribute($atribute,$value){
         try{
@@ -133,18 +133,18 @@ class User extends Model implements Validations
 
 
 
-    public function delteUser($idUser){
-        try{
-            if($idUser>0){
-                $this->destroy($idUser);
-            }
-            else{
-                return "Parece que houve um erro, tente novamente";
-            }
-        }catch(Exception $e){
-            return "Erro no servidor";
-        }
-    }
+    // public function delteUser($idUser){
+    //     try{
+    //         if($idUser>0){
+    //             $this->destroy($idUser);
+    //         }
+    //         else{
+    //             return "Parece que houve um erro, tente novamente";
+    //         }
+    //     }catch(Exception $e){
+    //         return "Erro no servidor";
+    //     }
+    // }
     public function getById($idUser){
         try{
            
@@ -167,8 +167,7 @@ class User extends Model implements Validations
     public function getByFullName($FullName){
         try{
            
-            $consultUser=$this->where('UserFullName',$FullName)->get();
-           
+            $consultUser=$this->where('UserFullName',$FullName)->first();
             $this->idUser=$consultUser->idUser;
             $this->setAllAtributs(  $consultUser->UserFullName,
                                     $consultUser->UserBirthDate,
@@ -185,9 +184,7 @@ class User extends Model implements Validations
 
     public function getByCPF($CPF){
         try{
-           
-            $consultUser=$this->where('UserCPF',$CPF)->get();
-           
+            $consultUser=$this->where('UserCPF',$CPF)->first();
             $this->idUser=$consultUser->idUser;
             $this->setAllAtributs(  $consultUser->UserFullName,
                                     $consultUser->UserBirthDate,
@@ -205,7 +202,7 @@ class User extends Model implements Validations
     public function getByEmail($Email){
         try{
            
-            $consultUser=$this->where('UserEmail',$Email)->get();
+            $consultUser=$this->where('UserEmail',$Email);
            
             $this->idUser=$consultUser->idUser;
             $this->setAllAtributs(  $consultUser->UserFullName,
@@ -224,7 +221,7 @@ class User extends Model implements Validations
     public function UserLogin(){
         try{
            
-            $consultUser=$this->where(['UserLogin'=>$this->UserLogin,'UserPassword'=>$this->UserPassword])->get();
+            $consultUser=$this->where(['UserLogin'=>$this->UserLogin,'UserPassword'=>$this->UserPassword]);
             if(  $consultUser->UserLogin  ==  $this->UserLogin  &&  $consultUser->UserPassword  ==  $this->UserPassword  ){
                 $this->idUser=$consultUser->idUser;
                 $this->setAllAtributs(  $consultUser->UserFullName,

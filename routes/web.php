@@ -20,19 +20,21 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/Endereco/{idAddress}',[AddressController::class,'getAddress']);
-Route::post('/InserirEndereco',[AddressController::class,'insertAddress']);
-Route::put('/EditarEndereco',[AddressController::class,'updateAddress']);
-Route::delete('/ExcluirEndereco',[AddressController::class,'deleteAddress']);
+// Route::get('/Endereco/{idAddress}',[AddressController::class,'getAddress']);
+// Route::post('/InserirEndereco',[AddressController::class,'insertAddress']);
+// Route::put('/EditarEndereco',[AddressController::class,'updateAddress']);
+// Route::delete('/ExcluirEndereco',[AddressController::class,'deleteAddress']);
 
 
-// Route::get('/Usuario/{idUser}',[UserController::class,'getUserById']);
-// Route::post('/InserirUsuario',[UserController::class,'insertUser']);
-// Route::put('/EditarUsuario',[UserController::class,'updateUser']);
-// Route::delete('/ExcluirUsuario',[UserController::class,'delteUser']);
+// // Route::get('/Usuario/{idUser}',[UserController::class,'getUserById']);
+// // Route::post('/InserirUsuario',[UserController::class,'insertUser']);
+// // Route::put('/EditarUsuario',[UserController::class,'updateUser']);
+// // Route::delete('/ExcluirUsuario',[UserController::class,'delteUser']);
 
 
 
 Route::get('/TesteDeLicencas',[LicenseTypeController::class,'Teste']);
 Route::get('/TesteDeTiposDeUsuario',[UserTypeController::class,'Teste']);
+
+
 ?>

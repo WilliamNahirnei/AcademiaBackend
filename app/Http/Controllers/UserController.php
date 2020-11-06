@@ -17,7 +17,8 @@ class UserController extends BaseController
             }
             else{
                 $User=new User($request["UserFullName"],$request["UserBirthDate"],$request["UserCPF"],$request["UserEmail"],$request["UserLogin"],$request['UserPassword'],$request['UseridUserType']);
-                return $User->saveUser();
+                $User->saveUser();
+                return $User;
             }
         }catch(Exception $e){
             return "Erro no servidor";
@@ -30,6 +31,7 @@ class UserController extends BaseController
                 return "Parece que houve um erro por favor tente novamente";
             }
             else{
+
                 $User=new User($request["UserFullName"],$request["UserBirthDate"],$request["UserCPF"],$request["UserEmail"],$request["UserLogin"],$request['UserPassword'],$request['UseridUserType']);
                 $User=$User->updateUser($request["idUser"]);
                 return $User;
@@ -39,19 +41,21 @@ class UserController extends BaseController
         }
     }
 
-    public function deleteUser(Request $request){
-        try{
-            if($request==[]){
-                return "Parece que houve um erro por favor tente novamente";
-                }
-                else{
-                    $User=new User($request["UserFullName"],$request["UserBirthDate"],$request["UserCPF"],$request["UserEmail"],$request["UserLogin"],$request['UserPassword'],$request['UseridUserType']);
-                    return $User->deleteUser($request["idUser"]);
-                }
-        }catch(Exception $e){
-            return "Erro no servidor";
-        }
-    }
+    // public function deleteUser(Request $request){
+    //     try{
+    //         if($request==[]){
+    //             return "Parece que houve um erro por favor tente novamente";
+    //             }
+    //             else{
+    //                 $User=new User($request["UserFullName"],$request["UserBirthDate"],$request["UserCPF"],$request["UserEmail"],$request["UserLogin"],$request['UserPassword'],$request['UseridUserType']);
+    //                 return $User->deleteUser($request["idUser"]);
+    //             }
+    //     }catch(Exception $e){
+    //         return "Erro no servidor";
+    //     }
+    // }
+
+
     public function getUserById(Request $request){
         try{
             if($request==[]){
@@ -68,8 +72,37 @@ class UserController extends BaseController
 
     }
 
-    // public function show(Request $request, User $user)
-    // {
-    //     return $user;
-    // }
+
+    public function getUserByFullName(Request $request){
+        try{
+            if($request==[]){
+                return "Parece que houve um erro por favor tente novamente";
+            }
+            else{
+                $User=new User();
+                $User->getByFullName($request["UserFullName"]);
+                return $User;
+            }
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
+
+    }
+
+
+    public function getUserByCPF(Request $request){
+        try{
+            if($request==[]){
+                return "Parece que houve um erro por favor tente novamente";
+            }
+            else{
+                $User=new User();
+                $User->getByCPF($request["UserCPF"]);
+                return $User;
+            }
+        }catch(Exception $e){
+            return "Erro no servidor";
+        }
+
+    }
 }
